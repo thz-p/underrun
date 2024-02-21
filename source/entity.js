@@ -20,32 +20,33 @@ class entity_t {
 	// separate _init() method, because "constructor" cannot be uglyfied
 	_init(init_param) {}
 
+	// 更新实体对象的状态
 	_update() {
 		var t = this,
 			last_x = t.x, last_z = t.z;
 
-		// velocity
+		// 更新速度
 		t.vx += t.ax * time_elapsed - t.vx * _math.min(t.f * time_elapsed, 1);
 		t.vy += t.ay * time_elapsed - t.vy * _math.min(t.f * time_elapsed, 1);
 		t.vz += t.az * time_elapsed - t.vz * _math.min(t.f * time_elapsed, 1);
 		
-		// position
+		// 更新位置
 		t.x += t.vx * time_elapsed;
 		t.y += t.vy * time_elapsed;
 		t.z += t.vz * time_elapsed;
 
-		// check wall collissions, horizontal
+		// 检查水平方向的墙壁碰撞
 		if (t._collides(t.x, last_z)) {
-			t._did_collide(t.x, t.y);
-			t.x = last_x;
-			t.vx = 0;
+			t._did_collide(t.x, t.y); // 处理碰撞
+			t.x = last_x; // 将 x 坐标还原到上一次的位置
+			t.vx = 0; // 速度归零
 		}
 
-		// check wall collissions, vertical
+		// 检查垂直方向的墙壁碰撞
 		if (t._collides(t.x, t.z)) {
-			t._did_collide(t.x, t.y);
-			t.z = last_z;
-			t.vz = 0;
+			t._did_collide(t.x, t.y); // 处理碰撞
+			t.z = last_z; // 将 z 坐标还原到上一次的位置
+			t.vz = 0; // 速度归零
 		}
 	}
 
