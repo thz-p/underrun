@@ -108,8 +108,10 @@ function terminal_show() {
 }
 
 function terminal_hide() {
-	a.style.opacity = 0;
-	terminal_hide_timeout = setTimeout(function(){a.style.display = 'none'}, 1000);
+    // 设置终端元素的不透明度为 0，使其隐藏
+    a.style.opacity = 0;
+    // 使用 setTimeout 函数延迟 1000 毫秒后执行匿名函数，将终端元素的显示方式设置为 'none'，实现隐藏效果
+    terminal_hide_timeout = setTimeout(function(){a.style.display = 'none'}, 1000);
 }
 
 function terminal_cancel() {
@@ -184,18 +186,35 @@ function terminal_run_garbage(callback) {
 	});
 }
 
+// 定义一个名为 terminal_run_story 的函数，该函数接受一个回调函数作为参数
 function terminal_run_story(callback) {
-	terminal_print_ident = true;
-	terminal_line_wait = 100;
-	terminal_write_text(terminal_prepare_text(terminal_text_story), callback);
+    // 设置终端打印标识为 true，表示终端输出的文本将缩进显示
+    terminal_print_ident = true;
+    
+    // 设置终端每行文本输出的间隔时间为 100 毫秒
+    terminal_line_wait = 100;
+    
+    // 调用 terminal_prepare_text 函数对终端故事文本进行准备，然后将准备好的文本写入终端，并在写入完成后调用回调函数
+    terminal_write_text(terminal_prepare_text(terminal_text_story), callback);
 }
 
+// 定义一个名为 terminal_run_outro 的函数，该函数接受一个回调函数作为参数
 function terminal_run_outro(callback) {
-	c.style.opacity = 0.3;
-	a.innerHTML = '';
-	terminal_text_buffer = [];
+    // 将页面中 id 为 c 的元素的不透明度设置为 0.3，即使其看起来变得半透明
+    c.style.opacity = 0.3;
+    
+    // 将页面中 id 为 a 的元素的 HTML 内容设置为空字符串，即清空该元素的内容
+    a.innerHTML = '';
+    
+    // 清空终端文本缓冲区数组
+    terminal_text_buffer = [];
 
-	terminal_cancel();
-	terminal_show();
-	terminal_write_text(terminal_prepare_text(terminal_text_outro));
+    // 调用 terminal_cancel 函数，取消终端当前的操作
+    terminal_cancel();
+    
+    // 调用 terminal_show 函数，显示终端
+    terminal_show();
+    
+    // 调用 terminal_prepare_text 函数对终端文本进行准备，然后将准备好的文本写入终端
+    terminal_write_text(terminal_prepare_text(terminal_text_outro));
 }
