@@ -1,14 +1,19 @@
 
 class entity_t {
+	// 构造函数，用于创建一个实体对象
 	constructor(x, y, z, friction, sprite, init_param) {
-		var t = this;
+		var t = this; // 将当前对象保存到变量 t 中
+		// 初始化对象的位置和速度
 		t.x = x; t.y = y; t.z = z;
-		t.vx = t.vy = t.vz = t.ax = t.ay = t.az = 0;
-		t.f = friction;
-		t.s = sprite;
-		t.h = 5;
+		t.vx = t.vy = t.vz = t.ax = t.ay = t.az = 0; // 速度和加速度初始化为 0
+		t.f = friction; // 设置摩擦力
+		t.s = sprite; // 设置精灵
+		t.h = 5; // 设置生命值，默认为 5
 
+		// 调用 _init 方法进行初始化，传入参数 init_param
 		t._init(init_param);
+
+		// 将当前对象添加到全局实体数组 entities 中
 		entities.push(t);
 	}
 
@@ -44,19 +49,27 @@ class entity_t {
 		}
 	}
 
+	// 检查给定位置 (x, z) 是否与地图中的障碍物相碰撞
 	_collides(x, z) {
-		return level_data[(x >> 3) + (z >> 3) * level_width] > 7 || // top left
-			level_data[((x + 6) >> 3) + (z >> 3) * level_width] > 7 || // top right
-			level_data[((x + 6) >> 3) + ((z+4) >> 3) * level_width] > 7 || // bottom right
-			level_data[(x >> 3) + ((z+4) >> 3) * level_width] > 7; // bottom left
+		// 根据地图数据判断碰撞情况
+		return level_data[(x >> 3) + (z >> 3) * level_width] > 7 ||              // 左上角
+			level_data[((x + 6) >> 3) + (z >> 3) * level_width] > 7 ||           // 右上角
+			level_data[((x + 6) >> 3) + ((z+4) >> 3) * level_width] > 7 ||       // 右下角
+			level_data[(x >> 3) + ((z+4) >> 3) * level_width] > 7;               // 左下角
 	}
 
+	// 生成粒子
 	_spawn_particles(amount) {
+		// 循环生成指定数量的粒子
 		for (var i = 0; i < amount; i++) {
+			// 创建一个新的粒子实体对象
 			var particle = new entity_particle_t(this.x, 0, this.z, 1, 30);
-			particle.vx = (_math.random() - 0.5) * 128;
-			particle.vy = _math.random() * 96;
-			particle.vz = (_math.random() - 0.5) * 128;
+			// 为粒子对象设置随机的速度
+			// 注意：这里的 _math.random() 应该是一个随机数生成函数
+			// 可能是用于获取 0 到 1 之间的随机数
+			particle.vx = (_math.random() - 0.5) * 128; // 在 -64 到 64 之间生成 x 方向速度
+			particle.vy = _math.random() * 96;           // 在 0 到 96 之间生成 y 方向速度
+			particle.vz = (_math.random() - 0.5) * 128; // 在 -64 到 64 之间生成 z 方向速度
 		}
 	}
 
