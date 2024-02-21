@@ -74,20 +74,37 @@ var terminal_text_outro =
     'DOMINIC__' + // 创建者信息
     'END OF TRANSMISSION'; // 传输结束信息
 
-var terminal_text_buffer = [],
-	terminal_state = 0,
-	terminal_current_line,
-	terminal_line_wait = 100,
-	terminal_print_ident = true,
-	terminal_timeout_id = 0,
-	terminal_hide_timeout = 0;
+// 定义一个数组，用于存储终端文本的缓冲区
+var terminal_text_buffer = [];
 
+// 定义一个变量，表示终端的当前状态
+var terminal_state = 0;
+
+// 定义一个变量，表示终端当前正在打印的行
+var terminal_current_line;
+
+// 定义一个变量，表示每行打印完毕后等待的时间（毫秒）
+var terminal_line_wait = 100;
+
+// 定义一个布尔变量，表示是否在打印每行文本前显示标识符（默认为 true）
+var terminal_print_ident = true;
+
+// 定义一个变量，用于存储 setTimeout 函数的 ID，用于取消计时器
+var terminal_timeout_id = 0;
+
+// 定义一个变量，用于存储 setTimeout 函数的 ID，用于隐藏终端的计时器
+var terminal_hide_timeout = 0;
+
+// 将终端文本垃圾信息重复三次添加到终端文本垃圾信息中，增加其长度
 terminal_text_garbage += terminal_text_garbage + terminal_text_garbage;
 
 function terminal_show() {
-	clearTimeout(terminal_hide_timeout);
-	a.style.opacity = 1;
-	a.style.display = 'block';
+    // 清除隐藏终端的计时器
+    clearTimeout(terminal_hide_timeout);
+    // 设置终端元素的不透明度为 1，使其显示
+    a.style.opacity = 1;
+    // 设置终端元素的显示方式为块级显示
+    a.style.display = 'block';
 }
 
 function terminal_hide() {
