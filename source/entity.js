@@ -17,8 +17,10 @@ class entity_t {
 		entities.push(t);
 	}
 
-	// separate _init() method, because "constructor" cannot be uglyfied
-	_init(init_param) {}
+	// 单独定义 _init() 方法，因为 "constructor" 不能被压缩
+	_init(init_param) {
+		// 在此进行实体对象的额外初始化，可以根据需要设置其他属性或执行其他初始化操作
+	}
 
 	// 更新实体对象的状态
 	_update() {
