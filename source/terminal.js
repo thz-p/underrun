@@ -1,71 +1,78 @@
 
+// 定义一个字符串，用于表示终端文本的标识符，这里是 '>' 符号的 HTML 实体编码 '&gt;'
 var terminal_text_ident = '&gt; ';
+
+// 定义一个多行字符串，表示终端的标题和信息
 var terminal_text_title = '' +
-	'UNDERRUN\n' +
-	'__ \n' +
-	'CONCEPT, GRAPHICS &AMP; PROGRAMMING:\n' +
-	'DOMINIC SZABLEWSKI // PHOBOSLAB.ORG\n' +
-	'__ \n' +
-	'MUSIC:\n' +
-	'ANDREAS LÖSCH // NO-FATE.NET\n' +
-	'___ \n' +
-	'SYSTEM VERSION: 13.20.18\n' +
-	'CPU: PL(R) Q-COATL 7240 @ 12.6 THZ\n' +
-	'MEMORY: 108086391056891900 BYTES\n' +
-	' \n' +
-	'CONNECTING...';
+    'UNDERRUN\n' + // 游戏标题
+    '__ \n' + // 下划线
+    'CONCEPT, GRAPHICS &AMP; PROGRAMMING:\n' + // 游戏开发者信息
+    'DOMINIC SZABLEWSKI // PHOBOSLAB.ORG\n' + // 开发者名字和网站
+    '__ \n' + // 下划线
+    'MUSIC:\n' + // 音乐信息
+    'ANDREAS LÖSCH // NO-FATE.NET\n' + // 音乐作者名字和网站
+    '___ \n' + // 下划线
+    'SYSTEM VERSION: 13.20.18\n' + // 系统版本信息
+    'CPU: PL(R) Q-COATL 7240 @ 12.6 THZ\n' + // CPU 信息
+    'MEMORY: 108086391056891900 BYTES\n' + // 内存信息
+    ' \n' + // 空行
+    'CONNECTING...'; // 连接状态信息
 
+// 定义一个字符串，表示终端文本中的垃圾信息
 var terminal_text_garbage = 
-	'´A1e{∏éI9·NQ≥ÀΩ¸94CîyîR›kÈ¡˙ßT-;ûÅf^˛,¬›A∫Sã€«ÕÕ' +
-	'1f@çX8ÎRjßf•ò√ã0êÃcÄ]Î≤moDÇ’ñ‰\\ˇ≠n=(s7É;';
+    '´A1e{∏éI9·NQ≥ÀΩ¸94CîyîR›kÈ¡˙ßT-;ûÅf^˛,¬›A∫Sã€«ÕÕ' +
+    '1f@çX8ÎRjßf•ò√ã0êÃcÄ]Î≤moDÇ’ñ‰\\ˇ≠n=(s7É;';
 
+// 定义一个字符串，表示终端文本中的故事信息
 var terminal_text_story = 
-	'DATE: SEP. 13, 2718 - 13:32\n' +
-	'CRITICAL SOFTWARE FAILURE DETECTED\n' +
-	'ANALYZING...\n' +
-	'____\n \n' +
-	'ERROR CODE: JS13K2018\n' +
-	'STATUS: SYSTEMS OFFLINE\n' +
-	'DESCRIPTION: BUFFER UNDERRUN DUE TO SATCOM R.U.D.\n' +
-	'AFFECTED SYSTEM: FACILITY AUTOMATION\n' +
-	'AFFECTED SUBSYSTEMS: AI, RADIATION SHIELDS, POWER MANAGEMENT\n' +
-	' \n' +
-	'INITIATING RESCUE SYSTEM...\n' +
-	'___' +
-	'FAILED\n \n' +
-	'ATTEMPTING AUTOMATED REBOOT...\n' +
-	'___' +
-	'FAILED\n' +
-	'_ \n \n' +
-	'MANUAL REBOOT OF ALL SYSTEMS REQUIRED\n' +
-	'_ \n' +
-	'USE WASD OR CURSOR KEYS TO MOVE, MOUSE TO SHOOT\n' +
-	'CLICK TO INITIATE YOUR DEPLOYMENT\n ';
+    'DATE: SEP. 13, 2718 - 13:32\n' + // 日期时间信息
+    'CRITICAL SOFTWARE FAILURE DETECTED\n' + // 软件故障信息
+    'ANALYZING...\n' + // 分析信息
+    '____\n \n' + // 下划线和空行
+    'ERROR CODE: JS13K2018\n' + // 错误代码信息
+    'STATUS: SYSTEMS OFFLINE\n' + // 状态信息
+    'DESCRIPTION: BUFFER UNDERRUN DUE TO SATCOM R.U.D.\n' + // 描述信息
+    'AFFECTED SYSTEM: FACILITY AUTOMATION\n' + // 受影响的系统信息
+    'AFFECTED SUBSYSTEMS: AI, RADIATION SHIELDS, POWER MANAGEMENT\n' + // 受影响的子系统信息
+    ' \n' + // 空行
+    'INITIATING RESCUE SYSTEM...\n' + // 启动救援系统信息
+    '___' + // 下划线
+    'FAILED\n \n' + // 失败信息和空行
+    'ATTEMPTING AUTOMATED REBOOT...\n' + // 尝试自动重启信息
+    '___' + // 下划线
+    'FAILED\n' + // 失败信息
+    '_ \n \n' + // 下划线和空行
+    'MANUAL REBOOT OF ALL SYSTEMS REQUIRED\n' + // 需要手动重启所有系统信息
+    '_ \n' + // 下划线和空行
+    'USE WASD OR CURSOR KEYS TO MOVE, MOUSE TO SHOOT\n' + // 使用说明信息
+    'CLICK TO INITIATE YOUR DEPLOYMENT\n '; // 点击信息
 
+// 定义一个字符串，表示终端文本中的结尾信息
 var terminal_text_outro = 
-	'ALL SATELLITE LINKS ONLINE\n' +
-	'CONNECTING...___' +
-	'CONNECTION ESTABLISHED\n' +
-	'RECEIVING TRANSMISSION...___ \n' +
-	
-	'SENT: SEP. 13, 2018\n' +
-	'RCVD: SEP. 13, 2718\n \n' +
-	
-	'THANKS FOR PLAYING ❤_ \n' +
-	'I HAVE PREVIOUSLY BEEN A PROUD SPONSOR OF THE JS13K\n' +
-	'COMPETITION SINCE THE VERY FIRST ONE BACK IN 2012.\n' +
-	'HOWEVER, THIS YEAR\'S COMPETITION WAS MY FIRST ONE\n' +
-	'AS A PARTICIPANT AND IT HAS BEEN TREMENDOUS FUN!\n \n' +
-	
-	'I WANT TO THANK MY DEAR FRIEND ANDREAS LÖSCH OF\n' +
-	'NO-FATE.NET FOR COMPOSING SOME AWESOME MUSIC ON\n' + 
-	'SUCH SHORT NOTICE.\n \n' +
-
-	'FURTHER THANKS GO OUT TO THE JS13K STAFF, THE\n' +
-	'SONANT-X DEVELOPERS AND ALL OTHER PARTICIPANTS\n' +
-	'IN THIS YEAR\'S JS13K. SEE YOU NEXT YEAR!\n \n' +
-	'DOMINIC__' +
-	'END OF TRANSMISSION';
+    'ALL SATELLITE LINKS ONLINE\n' + // 所有卫星链接在线信息
+    'CONNECTING...___' + // 连接信息和下划线
+    'CONNECTION ESTABLISHED\n' + // 连接建立信息
+    'RECEIVING TRANSMISSION...___ \n' + // 接收传输信息和下划线以及空行
+    
+    'SENT: SEP. 13, 2018\n' + // 发送日期信息
+    'RCVD: SEP. 13, 2718\n \n' + // 接收日期信息和空行
+    
+    'THANKS FOR PLAYING ❤_ \n' + // 感谢信息和心形符号
+    'I HAVE PREVIOUSLY BEEN A PROUD SPONSOR OF THE JS13K\n' + // 赞助信息
+    'COMPETITION SINCE THE VERY FIRST ONE BACK IN 2012.\n' + // 竞赛历史信息
+    'HOWEVER, THIS YEAR\'S COMPETITION WAS MY FIRST ONE\n' + // 竞赛历史信息
+    'AS A PARTICIPANT AND IT HAS BEEN TREMENDOUS FUN!\n \n' + // 竞赛历史信息和空行
+    
+    'I WANT TO THANK MY DEAR FRIEND ANDREAS LÖSCH OF\n' + // 感谢朋友信息
+    'NO-FATE.NET FOR COMPOSING SOME AWESOME MUSIC ON\n' + // 感谢音乐作者信息
+    'SUCH SHORT NOTICE.\n \n' + // 感谢信息和空行
+    
+    'FURTHER THANKS GO OUT TO THE JS13K STAFF, THE\n' + // 进一步感谢信息
+    'SONANT-X DEVELOPERS AND ALL OTHER PARTICIPANTS\n' + // 进一步感谢信息
+    'IN THIS YEAR\'S JS13K. SEE YOU NEXT YEAR!\n \n' + // 进一步感谢信息和空行
+    
+    'DOMINIC__' + // 创建者信息
+    'END OF TRANSMISSION'; // 传输结束信息
 
 var terminal_text_buffer = [],
 	terminal_state = 0,
