@@ -25,21 +25,28 @@ var udef, // global undefined
 	entities_to_kill = [];
 
 function load_image(name, callback) {
-	_temp = new Image();
-	_temp.src = 'm/'+name+'.png';
-	_temp.onload = callback;
+    // 创建一个新的 Image 对象
+    _temp = new Image();
+    // 设置图片的 src 属性，加载指定路径的图片
+    _temp.src = 'm/' + name + '.png';
+    // 当图片加载完成时执行回调函数
+    _temp.onload = callback;
 }
 
 function next_level(callback) {
-	if (current_level == 3) {
-		entities_to_kill.push(entity_player);
-		terminal_run_outro();
-	}
-	else {
-		current_level++;
-		load_level(current_level, callback);
-		
-	}
+    // 如果当前关卡为第3关
+    if (current_level == 3) {
+        // 将玩家实体添加到要消灭的实体列表中
+        entities_to_kill.push(entity_player);
+        // 运行终结画面的结束部分
+        terminal_run_outro();
+    } else {
+        // 否则，进入下一关
+        // 增加当前关卡数
+        current_level++;
+        // 调用 load_level 函数加载下一关，传入回调函数 callback
+        load_level(current_level, callback);
+    }
 }
 
 function load_level(id, callback) {
@@ -136,11 +143,13 @@ function load_level(id, callback) {
 }
 
 function reload_level() {
-	load_level(current_level);
+    // 调用 load_level 函数重新加载当前关卡
+    load_level(current_level);
 }
 
 function preventDefault(ev) {
-	ev.preventDefault();
+    // 调用事件对象的 preventDefault 方法，阻止事件的默认行为
+    ev.preventDefault();
 }
 
 _document.onkeydown = function(ev) {
