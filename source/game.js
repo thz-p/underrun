@@ -143,37 +143,48 @@ function preventDefault(ev) {
 	ev.preventDefault();
 }
 
-_document.onkeydown = function(ev){
-	_temp = ev.keyCode;
-	_temp = key_convert[_temp] || _temp;
-	if (keys[_temp] !== udef) {
-		keys[_temp] = 1;
-		preventDefault(ev);
-	}
+_document.onkeydown = function(ev) {
+    // 将按键的键码保存到临时变量 _temp 中
+    _temp = ev.keyCode;
+    // 将键码转换为预定义的键码，如果不存在对应的映射，则保持原值
+    _temp = key_convert[_temp] || _temp;
+    // 如果按键对应的状态存在（不为 undefined），则将按键状态设为1，并阻止默认行为
+    if (keys[_temp] !== udef) {
+        keys[_temp] = 1;
+        preventDefault(ev);
+    }
 }
 
 _document.onkeyup = function(ev) {
-	_temp = ev.keyCode;
-	_temp = key_convert[_temp] || _temp;
-	if (keys[_temp] !== udef) {
-		keys[_temp] = 0;
-		preventDefault(ev);
-	}
+    // 将按键的键码保存到临时变量 _temp 中
+    _temp = ev.keyCode;
+    // 将键码转换为预定义的键码，如果不存在对应的映射，则保持原值
+    _temp = key_convert[_temp] || _temp;
+    // 如果按键对应的状态存在（不为 undefined），则将按键状态设为0，并阻止默认行为
+    if (keys[_temp] !== udef) {
+        keys[_temp] = 0;
+        preventDefault(ev);
+    }
 }
 
 _document.onmousemove = function(ev) {
-	mouse_x = (ev.clientX / c.clientWidth) * c.width;
-	mouse_y = (ev.clientY / c.clientHeight) * c.height;
+    // 根据鼠标在屏幕上的位置计算在画布上的位置
+    mouse_x = (ev.clientX / c.clientWidth) * c.width;
+    mouse_y = (ev.clientY / c.clientHeight) * c.height;
 }
 
 _document.onmousedown = function(ev) {
-	keys[key_shoot] = 1;
-	preventDefault(ev);
+    // 在鼠标按下时，将射击键的状态设为1（表示按下）
+    keys[key_shoot] = 1;
+    // 阻止默认行为，避免触发默认的鼠标按下行为
+    preventDefault(ev);
 }
 
 _document.onmouseup = function(ev) {
-	keys[key_shoot] = 0;
-	preventDefault(ev);
+    // 在鼠标抬起时，将射击键的状态设为0（表示未按下）
+    keys[key_shoot] = 0;
+    // 阻止默认行为，避免触发默认的鼠标抬起行为
+    preventDefault(ev);
 }
 
 function game_tick() {
