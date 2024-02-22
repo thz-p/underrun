@@ -1,37 +1,52 @@
 
 class entity_spider_t extends entity_t {
 	_init() {
+		// 初始化动画时间为0
 		this._animation_time = 0;
+		// 初始化选择目标的计数器为0
 		this._select_target_counter = 0;
+		// 将目标 x 坐标初始化为当前蜘蛛的 x 坐标
 		this._target_x = this.x;
+		// 将目标 z 坐标初始化为当前蜘蛛的 z 坐标
 		this._target_z = this.z;
-	}
+	}	
 	
 	_update() {
 		var t = this,
+			// 计算蜘蛛与目标 x 坐标之间的距离
 			txd = t.x - t._target_x,
+			// 计算蜘蛛与目标 z 坐标之间的距离
 			tzd = t.z - t._target_z,
+			// 计算蜘蛛与玩家实体之间的 x 距离
 			xd = t.x - entity_player.x,
+			// 计算蜘蛛与玩家实体之间的 z 距离
 			zd = t.z - entity_player.z,
+			// 计算蜘蛛与玩家实体之间的总距离
 			dist = _math.sqrt(xd * xd + zd * zd);
-
+	
+		// 减少选择目标的计数器
 		t._select_target_counter -= time_elapsed;
-
-		// select new target after a while
+	
+		// 在一段时间后选择新的目标
 		if (t._select_target_counter < 0 && dist < 64) {
+			// 重新设定选择目标的计数器为随机值
 			t._select_target_counter = _math.random() * 0.5 + 0.3;
+			// 将目标 x 坐标设定为玩家的 x 坐标
 			t._target_x = entity_player.x;
+			// 将目标 z 坐标设定为玩家的 z 坐标
 			t._target_z = entity_player.z;
 		}
 		
-		// set velocity towards target
+		// 根据与目标的距离设置速度
 		t.ax = _math.abs(txd) > 2 ? (txd > 0 ? -160 : 160) : 0;
 		t.az = _math.abs(tzd) > 2 ? (tzd > 0 ? -160 : 160) : 0;
-
+	
 		super._update();
+		// 更新动画时间
 		this._animation_time += time_elapsed;
-		this.s = 27 + ((this._animation_time*15)|0)%3;
-	}
+		// 根据动画时间更新蜘蛛大小
+		this.s = 27 + ((this._animation_time * 15) | 0) % 3;
+	}	
 
 	_receive_damage(from, amount) {
 		super._receive_damage(from, amount);
