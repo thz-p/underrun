@@ -49,37 +49,46 @@ class entity_spider_t extends entity_t {
 	}	
 
 	_receive_damage(from, amount) {
+		// 调用父类的 _receive_damage 方法来处理伤害
 		super._receive_damage(from, amount);
+		// 将受到伤害的实体的速度赋值给受伤的蜘蛛
 		this.vx = from.vx;
 		this.vz = from.vz;
+		// 生成粒子效果
 		this._spawn_particles(5);
-	}
+	}	
 
 	_check(other) {
-		// slightly bounce off from other spiders to separate them
+		// 如果碰撞的实体是其他蜘蛛
 		if (other instanceof entity_spider_t) {
-			var 
-				axis = (_math.abs(other.x - this.x) > _math.abs(other.z - this.z)
-					? 'x' 
-					: 'z'),
-				amount = this[axis] > other[axis] ? 0.6 : -0.6;
-
+			// 判断要在哪个轴上进行反弹，选择距离更远的轴
+			var axis = (_math.abs(other.x - this.x) > _math.abs(other.z - this.z)
+				? 'x' 
+				: 'z');
+			// 确定反弹的量
+			var amount = this[axis] > other[axis] ? 0.6 : -0.6;
+	
+			// 调整当前蜘蛛和其他蜘蛛的速度以进行反弹
 			this['v'+axis] += amount;
 			other['v'+axis] -= amount;
 		}
-
-		// hurt player
+		// 如果碰撞的实体是玩家
 		else if (other instanceof entity_player_t) {
+			// 反弹玩家并造成伤害
 			this.vx *= -1.5;
 			this.vz *= -1.5;
 			other._receive_damage(this, 1);
 		}
-	}
+	}	
 
 	_kill() {
+		// 调用父类的 _kill 方法
 		super._kill();
+		// 创建爆炸实体
 		new entity_explosion_t(this.x, 0, this.z, 0, 26);
+		// 触发相机震动效果
 		camera_shake = 1;
+		// 播放爆炸音效
 		audio_play(audio_sfx_explode);
-	}
+	}	
 }
